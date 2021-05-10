@@ -103,13 +103,15 @@ public class Window extends JFrame {
 						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
 						
 						String line = "";
-						String s = "";
-						while((line = br.readLine()) != null) {
-							s += line + "\n";
+						int c = 0;
+						while((c = br.read()) != -1) {
+							if((char)c == '\t') {
+								line += "    ";
+								continue;
+							}
+							line += (char)c;
 						}
-						textArea.setText(s);
-						if(br != null)
-							br.close();
+						textArea.setText(line);
 					} catch(Exception e1){
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
