@@ -27,6 +27,8 @@ public class Window extends JFrame {
 
 	private JPanel contentPane;
 	String exp ="";
+	private JTextArea textArea;
+	private JTextArea textArea_1;
 
 	/**
 	 * Launch the application.
@@ -48,6 +50,7 @@ public class Window extends JFrame {
 	 * Create the frame.
 	 */
 	public Window() {
+		setTitle("untitled.java");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 445);
 		
@@ -63,17 +66,7 @@ public class Window extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 15));
-		scrollPane.setViewportView(textArea);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		splitPane.setRightComponent(scrollPane_1);
-		
-		JTextArea textArea_1 = new JTextArea();
-		scrollPane_1.setViewportView(textArea_1);
-		
+				
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
@@ -84,6 +77,7 @@ public class Window extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.setText("");
+				setTitle("untitled.java");
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
@@ -96,6 +90,7 @@ public class Window extends JFrame {
 				fc.setFileFilter(new FileTypeFilter(".java", "java File"));
 				
 				int result = fc.showOpenDialog(null);
+				
 				if(result == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
 					exp = file.getPath();
@@ -112,6 +107,7 @@ public class Window extends JFrame {
 							line += (char)c;
 						}
 						textArea.setText(line);
+						setTitle(file.getName());
 						if(br != null) {
 							br.close();
 						}
@@ -137,10 +133,8 @@ public class Window extends JFrame {
 					exp = file.getPath();
 					try 
 					{
-						
 						FileWriter fw = new FileWriter(file.getPath() + ".java");
 						fw.write(content);
-						fw.flush();
 						fw.close();
 					}
 					catch(Exception e1)
@@ -195,7 +189,8 @@ public class Window extends JFrame {
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String command = "javac " + exp+".java";
+				String command = "javac " + exp;
+				System.out.println(exp);
 				Runtime rt = Runtime.getRuntime();
 				Process p = null;
 				try 
@@ -235,7 +230,6 @@ public class Window extends JFrame {
 				try{
 					while((line = br.readLine()) != null) {
 						s += line + "\n";
-						System.out.println(line);
 					}
 					textArea_1.setText(s);
 					if(br != null)
@@ -246,7 +240,22 @@ public class Window extends JFrame {
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_8);
+
+		textArea = new JTextArea();
+		textArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 15));
+		scrollPane.setViewportView(textArea);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		splitPane.setRightComponent(scrollPane_1);
+		
+		textArea_1 = new JTextArea();
+		scrollPane_1.setViewportView(textArea_1);
 	}
 
+	public JTextArea getTextArea() {
+		return textArea;
+	}
+	public JTextArea getTextArea_1() {
+		return textArea_1;
+	}
 }
