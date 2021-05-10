@@ -112,6 +112,9 @@ public class Window extends JFrame {
 							line += (char)c;
 						}
 						textArea.setText(line);
+						if(br != null) {
+							br.close();
+						}
 					} catch(Exception e1){
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
