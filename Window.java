@@ -130,12 +130,14 @@ public class Window extends JFrame {
 				{
 					String content = textArea.getText();
 					File file = fc.getSelectedFile();
-					exp = file.getPath();
 					try 
 					{
 						FileWriter fw = new FileWriter(file.getPath() + ".java");
 						fw.write(content);
 						fw.close();
+						exp = file.getPath()+ ".java";
+						setTitle(file.getName()+".java");
+						
 					}
 					catch(Exception e1)
 					{
@@ -190,7 +192,6 @@ public class Window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				String command = "javac " + exp;
-				System.out.println(exp);
 				Runtime rt = Runtime.getRuntime();
 				Process p = null;
 				try 
