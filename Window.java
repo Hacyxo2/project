@@ -59,7 +59,7 @@ public class Window extends JFrame {
 	 * Create the frame.
 	 */
 	public Window() {
-		setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 13));
+		setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 13));
 		setTitle("untitled.java");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 445);
@@ -78,15 +78,15 @@ public class Window extends JFrame {
 		splitPane.setLeftComponent(scrollPane);
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 13));
+		menuBar.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 13));
 		setJMenuBar(menuBar);
 
 		JMenu mnNewMenu = new JMenu("File");
-		mnNewMenu.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mnNewMenu.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu);
 
 		JMenuItem mntmNewMenuItem = new JMenuItem("New");
-		mntmNewMenuItem.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.setText("");
@@ -99,7 +99,7 @@ public class Window extends JFrame {
 		 * https://m.blog.naver.com/war2i7i7/220847905758
 		 */
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Open");
-		mntmNewMenuItem_1.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_1.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser(new File("c:\\11"));
@@ -133,7 +133,7 @@ public class Window extends JFrame {
 		 * https://m.blog.naver.com/war2i7i7/220847905758
 		 */
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Save");
-		mntmNewMenuItem_2.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_2.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser(new File("c:\\11\\"));
@@ -159,7 +159,7 @@ public class Window extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem_2);
 
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Exit");
-		mntmNewMenuItem_3.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_3.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -168,11 +168,11 @@ public class Window extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem_3);
 
 		JMenu mnNewMenu_1 = new JMenu("Edit");
-		mnNewMenu_1.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mnNewMenu_1.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_1);
 
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Copy");
-		mntmNewMenuItem_4.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_4.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.copy();
@@ -181,7 +181,7 @@ public class Window extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_4);
 
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Paste");
-		mntmNewMenuItem_5.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_5.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.paste();
@@ -190,7 +190,7 @@ public class Window extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_5);
 
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Cut");
-		mntmNewMenuItem_6.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_6.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.cut();
@@ -199,34 +199,38 @@ public class Window extends JFrame {
 		mnNewMenu_1.add(mntmNewMenuItem_6);
 
 		JMenu mnNewMenu_2 = new JMenu("Compile");
-		mnNewMenu_2.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mnNewMenu_2.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_2);
 		/*
-		 * https://superblo.tistory.com/entry/Ä¿¸Çµåcmd¿¡¼­-ÀÚ¹Ù-ÄÄÆÄÀÏÇÏ±â-¹×-½ÇÇà-¹æ¹ı
+		 * https://superblo.tistory.com/entry/ì»¤ë§¨ë“œcmdì—ì„œ-ìë°”-ì»´íŒŒì¼í•˜ê¸°-ë°-ì‹¤í–‰-ë°©ë²•
 		 * *https://m.blog.naver.com/PostView.nhn?blogId=slayra&logNo=221215991017&
 		 * categoryNo=7&proxyReferer=&proxyReferer=https:%2F%2Fwww.google.com%2F
 		 */
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Compile");
-		mntmNewMenuItem_7.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_7.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				String command = "javac " + path;
 				Runtime rt = Runtime.getRuntime();
 				Process p = null;
-				try {
-					p = rt.exec(command);
-					resultArea.setText(path + "°¡ ÄÄÆÄÀÏ µÇ¾ú½À´Ï´Ù.");
-				} catch (IOException e1) {
-					e1.printStackTrace();
+				if(textArea.getText().isBlank()) {
+					resultArea.setText("ì½”ë“œê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 				}
-
+				else {
+					try {
+						p = rt.exec(command);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+					resultArea.setText(path + "ê°€ ì»´íŒŒì¼ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+				}
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_7);
 
 		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Run");
-		mntmNewMenuItem_8.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_8.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -234,6 +238,10 @@ public class Window extends JFrame {
 
 				Runtime rt = Runtime.getRuntime();
 				Process p = null;
+				if(textArea.getText().isBlank()) {
+					resultArea.setText("ì½”ë“œê°€ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
+				}
+				else {
 				try {
 					p = rt.exec(command);
 				} catch (IOException e1) {
@@ -246,18 +254,17 @@ public class Window extends JFrame {
 					while ((line = br.readLine()) != null) {
 						text += line + "\n";
 					}
-					resultArea.setText(text);
 					br.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
-				}
-			}
+				}resultArea.setText(text);
+			}}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_8);
 
 		JMenu mnNewMenu_3 = new JMenu("Option");
 		mnNewMenu_3.setVerticalTextPosition(SwingConstants.TOP);
-		mnNewMenu_3.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mnNewMenu_3.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_3);
 
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Developer");
@@ -267,14 +274,14 @@ public class Window extends JFrame {
 				
 			}
 		});
-		mntmNewMenuItem_9.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mntmNewMenuItem_9.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		mnNewMenu_3.add(mntmNewMenuItem_9);
 
 		textArea = new JTextArea();
 		textArea.setTabSize(4);
 		textArea.setForeground(Color.BLACK);
 		textArea.setBackground(SystemColor.menu);
-		textArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 14));
+		textArea.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 14));
 		scrollPane.setViewportView(textArea);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -283,7 +290,7 @@ public class Window extends JFrame {
 		resultArea = new JTextArea();
 		resultArea.setForeground(Color.BLACK);
 		resultArea.setBackground(SystemColor.controlHighlight);
-		resultArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		resultArea.setFont(new Font("ë‚˜ëˆ”ê³ ë”• ExtraBold", Font.PLAIN, 12));
 		scrollPane_1.setViewportView(resultArea);
 	}
 
@@ -303,11 +310,11 @@ public class Window extends JFrame {
 class Developer extends JFrame {
 	Point point;
 	Developer(Point point) {
-		setTitle("°³¹ßÀÚ");
+		setTitle("ê°œë°œì");
 		JPanel DeveloperContainer = new JPanel();
 		setContentPane(DeveloperContainer);
 
-		JLabel NewLabel = new JLabel("<html>ÀÌ¸§ : ³ª¼öÇÏ<br>ÇĞ¹ø : 183607</html>");
+		JLabel NewLabel = new JLabel("<html>ì´ë¦„ : ë‚˜ìˆ˜í•˜<br>í•™ë²ˆ : 183607</html>");
 		setLocation(point);
 		DeveloperContainer.add(NewLabel);
 		setSize(250, 100);
