@@ -1,4 +1,5 @@
 package project;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.JTextArea;
 import javax.swing.AbstractButton;
@@ -22,13 +24,20 @@ import javax.swing.JFileChooser;
 import java.awt.Scrollbar;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.Point;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Window extends JFrame {
 
 	private JPanel contentPane;
-	String exp ="";
+	String path = "";
 	private JTextArea textArea;
-	private JTextArea textArea_1;
+	private JTextArea resultArea;
 
 	/**
 	 * Launch the application.
@@ -50,191 +59,195 @@ public class Window extends JFrame {
 	 * Create the frame.
 	 */
 	public Window() {
+		setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 13));
 		setTitle("untitled.java");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 445);
-		
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.8);
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		contentPane.add(splitPane, BorderLayout.CENTER);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
-				
+
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 13));
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnNewMenu = new JMenu("File");
+		mnNewMenu.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu);
-		
+
 		JMenuItem mntmNewMenuItem = new JMenuItem("New");
+		mntmNewMenuItem.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.setText("");
+				resultArea.setText("");
 				setTitle("untitled.java");
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
-		//https://m.blog.naver.com/war2i7i7/220847905758
+		/*
+		 * https://m.blog.naver.com/war2i7i7/220847905758
+		 */
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Open");
+		mntmNewMenuItem_1.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser(new File("c:\\11"));
 				fc.setDialogTitle("Open a File");
 				fc.setFileFilter(new FileTypeFilter(".java", "java File"));
-				
+
 				int result = fc.showOpenDialog(null);
-				
-				if(result == JFileChooser.APPROVE_OPTION) {
+
+				if (result == JFileChooser.APPROVE_OPTION) {
 					File file = fc.getSelectedFile();
-					exp = file.getPath();
+					path = file.getPath();
 					try {
 						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-						
+
 						String line = "";
-						int c = 0;
-						while((c = br.read()) != -1) {
-							if((char)c == '\t') {
-								line += "    ";
-								continue;
-							}
-							line += (char)c;
+						String text = "";
+						while ((line = br.readLine()) != null) {
+							text += line + "\n";
 						}
-						textArea.setText(line);
+						textArea.setText(text);
 						setTitle(file.getName());
-						if(br != null) {
-							br.close();
-						}
-					} catch(Exception e1){
+						br.close();
+					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
 				}
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
-		//https://m.blog.naver.com/war2i7i7/220847905758
+		/*
+		 * https://m.blog.naver.com/war2i7i7/220847905758
+		 */
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Save");
+		mntmNewMenuItem_2.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fc = new JFileChooser(new File("c:\\11\\"));
 				fc.setDialogTitle("Save a File");
 				fc.setFileFilter(new FileTypeFilter(".java", "java File"));
 				int result = fc.showSaveDialog(null);
-				if(result == JFileChooser.APPROVE_OPTION) 
-				{
-					String content = textArea.getText();
+				if (result == JFileChooser.APPROVE_OPTION) {
+					String text = textArea.getText();
 					File file = fc.getSelectedFile();
-					try 
-					{
+					try {
 						FileWriter fw = new FileWriter(file.getPath() + ".java");
-						fw.write(content);
+						fw.write(text);
 						fw.close();
-						exp = file.getPath()+ ".java";
-						setTitle(file.getName()+".java");
-						
-					}
-					catch(Exception e1)
-					{
+						path = file.getPath() + ".java";
+						setTitle(file.getName() + ".java");
+
+					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
 				}
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
-		
+
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Exit");
+		mntmNewMenuItem_3.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_3);
-		
+
 		JMenu mnNewMenu_1 = new JMenu("Edit");
+		mnNewMenu_1.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_1);
-		
+
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Copy");
+		mntmNewMenuItem_4.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.copy();
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_4);
-		
+
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Paste");
+		mntmNewMenuItem_5.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.paste();
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_5);
-		
+
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Cut");
+		mntmNewMenuItem_6.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea.cut();
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem_6);
-		
+
 		JMenu mnNewMenu_2 = new JMenu("Compile");
+		mnNewMenu_2.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_2);
-		//https://superblo.tistory.com/entry/Ä¿¸Çµåcmd¿¡¼­-ÀÚ¹Ù-ÄÄÆÄÀÏÇÏ±â-¹×-½ÇÇà-¹æ¹ý
-		//https://m.blog.naver.com/PostView.nhn?blogId=slayra&logNo=221215991017&categoryNo=7&proxyReferer=&proxyReferer=https:%2F%2Fwww.google.com%2F
+		/*
+		 * https://superblo.tistory.com/entry/Ä¿¸Çµåcmd¿¡¼­-ÀÚ¹Ù-ÄÄÆÄÀÏÇÏ±â-¹×-½ÇÇà-¹æ¹ý
+		 * *https://m.blog.naver.com/PostView.nhn?blogId=slayra&logNo=221215991017&
+		 * categoryNo=7&proxyReferer=&proxyReferer=https:%2F%2Fwww.google.com%2F
+		 */
 		JMenuItem mntmNewMenuItem_7 = new JMenuItem("Compile");
+		mntmNewMenuItem_7.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String command = "javac " + exp;
+
+				String command = "javac " + path;
 				Runtime rt = Runtime.getRuntime();
 				Process p = null;
-				try 
-				{
+				try {
 					p = rt.exec(command);
-					textArea_1.setText(exp+"°¡ ÄÄÆÄÀÏ µÇ¾ú½À´Ï´Ù.");
-				}
-				catch (IOException e1) 
-				{
+					resultArea.setText(path + "°¡ ÄÄÆÄÀÏ µÇ¾ú½À´Ï´Ù.");
+				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 
-				
 			}
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_7);
-		
-		JMenuItem mntmNewMenuItem_8 = new JMenuItem("run");
+
+		JMenuItem mntmNewMenuItem_8 = new JMenuItem("Run");
+		mntmNewMenuItem_8.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String c = "java " + exp;
-				
+
+				String command = "java " + path;
+
 				Runtime rt = Runtime.getRuntime();
 				Process p = null;
-				try 
-				{
-					p = rt.exec(c);
-				}
-				catch (IOException e1) 
-				{
+				try {
+					p = rt.exec(command);
+				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
 				BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
 				String line = "";
-				String s = "";
-				try{
-					while((line = br.readLine()) != null) {
-						s += line + "\n";
+				String text = "";
+				try {
+					while ((line = br.readLine()) != null) {
+						text += line + "\n";
 					}
-					textArea_1.setText(s);
-					if(br != null)
-						br.close();
+					resultArea.setText(text);
+					br.close();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -242,21 +255,63 @@ public class Window extends JFrame {
 		});
 		mnNewMenu_2.add(mntmNewMenuItem_8);
 
+		JMenu mnNewMenu_3 = new JMenu("Option");
+		mnNewMenu_3.setVerticalTextPosition(SwingConstants.TOP);
+		mnNewMenu_3.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		menuBar.add(mnNewMenu_3);
+
+		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Developer");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Developer(getLocation());
+				
+			}
+		});
+		mntmNewMenuItem_9.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		mnNewMenu_3.add(mntmNewMenuItem_9);
+
 		textArea = new JTextArea();
-		textArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 15));
+		textArea.setTabSize(4);
+		textArea.setForeground(Color.BLACK);
+		textArea.setBackground(SystemColor.menu);
+		textArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 14));
 		scrollPane.setViewportView(textArea);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane.setRightComponent(scrollPane_1);
-		
-		textArea_1 = new JTextArea();
-		scrollPane_1.setViewportView(textArea_1);
+
+		resultArea = new JTextArea();
+		resultArea.setForeground(Color.BLACK);
+		resultArea.setBackground(SystemColor.controlHighlight);
+		resultArea.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 12));
+		scrollPane_1.setViewportView(resultArea);
 	}
 
 	public JTextArea getTextArea() {
 		return textArea;
 	}
-	public JTextArea getTextArea_1() {
-		return textArea_1;
+
+	public JTextArea getresultArea() {
+		return resultArea;
+	}
+}
+
+/*
+ * https://arintvsecond.tistory.com/14 [ARINTV ARCHIVE]
+ * http://blog.naver.com/PostView.nhn?blogId=polpoipol&logNo=140104775477
+*/
+class Developer extends JFrame {
+	Point point;
+	Developer(Point point) {
+		setTitle("°³¹ßÀÚ");
+		JPanel DeveloperContainer = new JPanel();
+		setContentPane(DeveloperContainer);
+
+		JLabel NewLabel = new JLabel("<html>ÀÌ¸§ : ³ª¼öÇÏ<br>ÇÐ¹ø : 183607</html>");
+		setLocation(point);
+		DeveloperContainer.add(NewLabel);
+		setSize(250, 100);
+		setResizable(false);
+		setVisible(true);
 	}
 }
