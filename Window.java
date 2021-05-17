@@ -105,7 +105,32 @@ public class Window extends JFrame {
 		mntmNewMenuItem_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				JFileChooser fc = new JFileChooser(new File("c:\\11"));
+				fc.setDialogTitle("Open a File");
+				fc.setFileFilter(new FileTypeFilter(".java", "java File"));
+
+				int result = fc.showOpenDialog(null);
+
+				if (result == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					path = file.getPath();
+					try {
+						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
+
+						String line = "";
+						String text = "";
+						String sline = "";
+						while ((line = br.readLine()) != null) {
+							text += line + "\n";
+						}
+						textArea.setText(text);
+						resultArea.setText("");
+						setTitle(file.getName());
+						br.close();
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
+				}
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
