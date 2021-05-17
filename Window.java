@@ -119,7 +119,7 @@ public class Window extends JFrame {
 
 						String line = "";
 						String text = "";
-						String sline = "";
+						
 						while ((line = br.readLine()) != null) {
 							text += line + "\n";
 						}
@@ -279,16 +279,6 @@ public class Window extends JFrame {
 		});
 		mntmNewMenuItem_9.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		mnNewMenu_3.add(mntmNewMenuItem_9);
-		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Line");
-		mntmNewMenuItem_10.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String text = "";
-				
-			}
-		});
-		mntmNewMenuItem_10.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
-		mnNewMenu_3.add(mntmNewMenuItem_10);
 
 		textArea = new JTextArea();
 		
