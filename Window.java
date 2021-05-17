@@ -31,6 +31,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.LineBorder;
 
 public class Window extends JFrame {
 
@@ -58,6 +60,7 @@ public class Window extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Window() {
 		setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 13));
 		setTitle("untitled.java");
@@ -102,30 +105,7 @@ public class Window extends JFrame {
 		mntmNewMenuItem_1.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser fc = new JFileChooser(new File("c:\\11"));
-				fc.setDialogTitle("Open a File");
-				fc.setFileFilter(new FileTypeFilter(".java", "java File"));
-
-				int result = fc.showOpenDialog(null);
-
-				if (result == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					path = file.getPath();
-					try {
-						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-
-						String line = "";
-						String text = "";
-						while ((line = br.readLine()) != null) {
-							text += line + "\n";
-						}
-						textArea.setText(text);
-						setTitle(file.getName());
-						br.close();
-					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage());
-					}
-				}
+				
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
@@ -233,7 +213,6 @@ public class Window extends JFrame {
 		mntmNewMenuItem_8.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		mntmNewMenuItem_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				String command = "java " + path;
 
 				Runtime rt = Runtime.getRuntime();
@@ -271,19 +250,30 @@ public class Window extends JFrame {
 		mntmNewMenuItem_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Developer(getLocation());
-				
 			}
 		});
 		mntmNewMenuItem_9.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
 		mnNewMenu_3.add(mntmNewMenuItem_9);
+		
+		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Line");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String text = "";
+				
+			}
+		});
+		mntmNewMenuItem_10.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 12));
+		mnNewMenu_3.add(mntmNewMenuItem_10);
 
 		textArea = new JTextArea();
+		
 		textArea.setTabSize(4);
 		textArea.setForeground(Color.BLACK);
 		textArea.setBackground(SystemColor.menu);
 		textArea.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 14));
 		scrollPane.setViewportView(textArea);
-
+		
+	
 		JScrollPane scrollPane_1 = new JScrollPane();
 		splitPane.setRightComponent(scrollPane_1);
 
@@ -322,3 +312,4 @@ class Developer extends JFrame {
 		setVisible(true);
 	}
 }
+
